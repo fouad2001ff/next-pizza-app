@@ -1,17 +1,19 @@
-import React from 'react'
-import Hero from './_components/Hero'
-import About from '@/components/about'
-import Contact from '@/components/contact'
+import React from "react";
+import Hero from "./_components/Hero";
+import About from "@/components/about";
+import Contact from "@/components/contact";
+import BestSellers from "./_components/BestSellers";
 
-const page = () => {
+const page = async () => {
+  
   return (
-  <main>
+    <main>
+      <Hero />
+      <BestSellers />
+      <About />
+      <Contact />
+    </main>
+  );
+};
 
-  <Hero />
-  <About />
-  <Contact />
-  </main>
-  )
-}
-
-export default page
+export default page;
