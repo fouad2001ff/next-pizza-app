@@ -28,12 +28,15 @@ const CartItem = () => {
                 <div className=" flex-between flex-row gap-6  ">
                   <div className="flex items-center gap-2">
                     <div className=" relative w-24 h-24">
-                      <Image
-                        src={item.image}
-                        alt={item.name}
-                        className="object-contain"
-                        fill
-                      />
+                    <Image
+  src={item.image}
+  alt={item.name}
+  className="object-contain"
+  fill
+  priority
+  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+/>
+
                     </div>
                     <div>
                       <h4 className="font-semibold md:text-lg">{item.name}</h4>

@@ -1,3 +1,4 @@
+"use client";
 import Image from "next/image";
 import React from "react";
 import { ArrowRightCircle } from "lucide-react";
@@ -5,8 +6,10 @@ import { buttonVariants } from "@/components/ui/button";
 import { Routes } from "@/constants/enums";
 import Link from "@/components/link";
 import { useTranslations } from "next-intl";
-
+import { usePathname } from "next/navigation";
 const Hero = () => {
+  const pathname = usePathname();
+  const locale = pathname.split("/")[1];
   const t = useTranslations("hero");
 
   return (
@@ -17,7 +20,7 @@ const Hero = () => {
           <p className="text-accent my-4">{t("description")}</p>
           <div className="flex items-center gap-4">
             <Link
-              href={`/${Routes.MENU}`}
+              href={`/${locale}/${Routes.MENU}`}
               className={`${buttonVariants({
                 size: "lg",
               })} !px-4 !rounded-full`}
@@ -26,7 +29,7 @@ const Hero = () => {
               <ArrowRightCircle className="!w-5 !h-5" />
             </Link>
             <Link
-              href={`/${Routes.ABOUT}`}
+              href={`/${locale}/${Routes.ABOUT}`}
               className={`${buttonVariants({
                 size: "lg",
               })} !px-4 !rounded-full`}
@@ -37,13 +40,12 @@ const Hero = () => {
           </div>
         </div>
 
-        <div className="relative hidden md:block">
+        <div className="relative  w-full h-[200px]  hidden md:block">
           <Image
             src="/assets/images/pizza.png"
             alt="Delicious pizza"
             className="object-contain"
             fill
-            loading="eager"
             priority
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           />
