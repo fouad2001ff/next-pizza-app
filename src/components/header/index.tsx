@@ -2,8 +2,12 @@ import { Routes } from "@/constants/enums";
 import Link from "../link";
 import Navbar from "./navbar";
 import CartButton from "./CartButton";
+import { useTranslations } from "next-intl";
+import LanguageSwitcher from "./LanguageSwitcher";
 
 function Header() {
+  const t = useTranslations("nav");
+
   return (
     <header className=" py-4 md:py-6 ">
       <div className="container flex-between">
@@ -11,11 +15,12 @@ function Header() {
           href={Routes.ROOT}
           className="text-primary font-semibold text-2xl"
         >
-          🍕 Pizza
+          {t("pizza")}
         </Link>
 
         <div className="flex items-center gap-2 ">
           <Navbar />
+          <LanguageSwitcher />
           <CartButton />
         </div>
       </div>

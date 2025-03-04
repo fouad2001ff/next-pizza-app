@@ -1,39 +1,46 @@
-
 //This file defines cached data fetching functions for retrieving product-related information from the database using Prisma
-import { cache } from "@/lib/cache"
-import { db } from "@/lib/prisma"
+import { cache } from "@/lib/cache";
+import { db } from "@/lib/prisma";
 
-export const getProductsByCategory = cache( () => {
-const products = db.category.findMany({
-  include: {
-    products: {
+export const getProductsByCategory = cache(
+  () => {
+    const products = db.category.findMany({
       include: {
-        sizes: true,
-        extras: true,
-      },
-    },
-  }
-}) 
-  return products
-}, ["products-by-category"], {revalidate: 3600})
-
-export const getBestSellers= cache( (limit?: number | undefined) => {
-    const bestSellers=  db.product.findMany({
-        where: {
-            orders: {
-              some: {},
-            },
-          },
-          orderBy: {
-            orders: {
-              _count: "desc",
-            },
-          },
+        products: {
           include: {
             sizes: true,
             extras: true,
           },
-          take: limit,
-      })
-      return bestSellers
-}, ['best-sellers'], {revalidate: 3600}) 
+        },
+      },
+    });
+    return products;
+  },
+  ["products-by-category"],
+  { revalidate: 3600 }
+);
+
+export const getBestSellers = cache(
+  (limit?: number | undefined) => {
+    const bestSellers = db.product.findMany({
+      where: {
+        orders: {
+          some: {},
+        },
+      },
+      orderBy: {
+        orders: {
+          _count: "desc",
+        },
+      },
+      include: {
+        sizes: true,
+        extras: true,
+      },
+      take: limit,
+    });
+    return bestSellers;
+  },
+  ["best-sellers"],
+  { revalidate: 3600 }
+);

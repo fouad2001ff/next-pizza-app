@@ -1,6 +1,5 @@
-
-import { Environments } from '@/constants/enums';
-import { PrismaClient } from '@prisma/client';
+import { Environments } from "@/constants/enums";
+import { PrismaClient } from "@prisma/client";
 
 // PrismaClient is attached to the `global` object in development to prevent
 // exhausting your database connection limit.
@@ -17,8 +16,8 @@ export const db =
   new PrismaClient({
     log:
       process.env.NODE_ENV === Environments.DEV
-        ? ['query', 'error', 'warn']
-        : ['error'],
+        ? ["query", "error", "warn"]
+        : ["error"],
   });
 
 if (process.env.NODE_ENV !== Environments.PROD) globalForPrisma.prisma = db;

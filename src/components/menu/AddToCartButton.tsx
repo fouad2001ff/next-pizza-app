@@ -1,4 +1,7 @@
-import React from "react";
+
+
+"use client";
+import React, { useState } from "react";
 import { Button } from "../ui/button";
 import {
   Dialog,
@@ -11,92 +14,100 @@ import {
 } from "@/components/ui/dialog";
 import Image from "next/image";
 import { Label } from "../ui/label";
-import { RadioGroup, RadioGroupItem } from "../ui/radio-group";
 import { formatCurrency } from "@/lib/formatters";
-import { Checkbox } from "../ui/checkbox";
-import { Extra, Product, Size } from "@prisma/client";
+import { Extra, productSizes, Size } from "@prisma/client";
 import { ProductWithRelations } from "@/types/product";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+import { addCartItem, selectCartItems } from "@/redux/features/cart/cartSlice";
+import { getItemQuantity } from "@/lib/cart";
+import Extras from "../cart/Extras";
+import PickSize from "../cart/PickSize";
+import ChooseQuantity from "../cart/ChooseQuantity";
 
+const AddToCartButton = ({ item }: { item: ProductWithRelations }) => {
+  const cart = useAppSelector(selectCartItems);
+  const dispatch = useAppDispatch();
+  const quantity = getItemQuantity(cart, item.id);
 
+  const defaultSize =
+    cart.find((element) => element.id === item.id)?.sizes ||
+    item.sizes.find((size) => size.name === productSizes.SMALL);
 
-const AddToCartButton = ({item}: {item: ProductWithRelations}) => {
+  const defaultExtras =
+    cart.find((element) => element.id === item.id)?.extras || [];
+
+  const [selectedSize, setSelectedSize] = useState<Size>(defaultSize!);
+  const [selectedExtras, setSelectedExtras] = useState<Extra[]>(defaultExtras);
+
+  let totalPrice = item.basePrice;
+
+  if (selectedSize) {
+    totalPrice += selectedSize.price;
+  }
+
+  if (selectedExtras) {
+    totalPrice += selectedExtras.reduce((acc, extra) => acc + extra.price, 0);
+  }
+
+  const handleAddToCart = () => {
+    dispatch(
+      addCartItem({
+        id: item.id,
+        name: item.name,
+        basePrice: item.basePrice,
+        image: item.image,
+        sizes: selectedSize,
+        extras: selectedExtras,
+      })
+    );
+  };
+
   return (
     <Dialog>
       <DialogTrigger asChild>
-      <Button
-    type='button'
-    size= 'lg'
-    className='mt-4 rounded-full '
-    >
-        Add to Cart
-
-    </Button>
+        <Button type="button" size="lg" className="mt-4 rounded-full  ">
+          Add to Cart
+        </Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px] max-h-[80vh] overflow-y-auto">
         <DialogHeader className="flex items-center">
-            <Image src={item.image} alt= {item.name} width={200} height={200} />
+          <Image src={item.image} alt={item.name} width={200} height={200} />
           <DialogTitle>{item.name}</DialogTitle>
-          <DialogDescription>
-            {item.description}
-          </DialogDescription>
+          <DialogDescription>{item.description}</DialogDescription>
         </DialogHeader>
 
-       <div>
         <div className="text-center space-y-4">
-            <Label >Pick Your Size</Label>
-            <PickSize sizes={item.sizes} item={item} />
+          <Label>Pick Your Size</Label>
+          <PickSize
+            sizes={item.sizes}
+            item={item}
+            selectedSize={selectedSize}
+            setSelectedSize={setSelectedSize}
+          />
         </div>
-        <div className="text-center space-y-4">
-            <Label >Any extras?</Label>
-            <Extras extras={item.extras} />
-            
-        </div>
-       </div>
+        <Extras
+          extras={item.extras}
+          selectedExtras={selectedExtras}
+          setSelectedExtras={setSelectedExtras}
+        />
         <DialogFooter>
-          <Button type="submit" className="w-full h-10">Add To Cart</Button>
+          {quantity === 0 ? (
+            <Button onClick={handleAddToCart} className="w-full h-10">
+              Add To Cart {formatCurrency(totalPrice)}
+            </Button>
+          ) : (
+            <ChooseQuantity
+              item={item}
+              quantity={quantity}
+              selectedSize={selectedSize}
+              selectedExtras={selectedExtras}
+              handleAddToCart={handleAddToCart}
+            />
+          )}
         </DialogFooter>
       </DialogContent>
     </Dialog>
-
-    
   );
 };
 
 export default AddToCartButton;
-
-
-function PickSize ({sizes, item}: {sizes: Size[]; item:Product}){
-    return(
-        <RadioGroup defaultValue="comfortable">
-        {sizes.map((size => (
-            <div key={size.id} className="flex items-center space-x-2 border border-gray-100 rounded-md p-4">
-            <RadioGroupItem value="default" id={size.id} />
-            <Label htmlFor={size.id}>{size.name} {formatCurrency(size.price + item.basePrice)}</Label>
-          </div>
-        )))}
-        
-        
-      </RadioGroup>
-    )
-}
-function Extras ({extras}: {extras: Extra[] } )   {
-    return (
-        <div className="space-y-2">
-          {extras.map((extra) => (
-            <div key={extra.id} className="flex items-center space-x-2 border border-gray-100 rounded-md p-4">
-              <Checkbox id={extra.id} />
-              <label
-                htmlFor={extra.id}
-                className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-              >
-                {extra.name} {formatCurrency(extra.price)}
-              </label>
-            </div>
-          ))}
-        </div>
-      )}
-        
-        
-        
-    
-

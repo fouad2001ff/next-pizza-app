@@ -1,0 +1,51 @@
+{
+  "nav": {
+    "pizza": "🍕 Pizza",
+    "menu": "Menu",
+    "about": "About",
+    "contact": "Contact",
+    "login": "Login"
+  },
+  "hero": {
+    "title": "Slice into Happiness",
+    "description": "Craving Pizza? We’ve got you covered with fresh ingredients, endless flavors, and the fastest delivery. Your perfect slice is just a tap away!",
+    "orderNow": "Order Now",
+    "learnMore": "Learn More"
+  },
+  "bestSellers": {
+    "title": "Check Out",
+    "subtitle": "Our Best Sellers",
+    "noProducts": "No Products Found"
+  },
+
+  "about": {
+    "title": "Our Story",
+    "subtitle": "About Us",
+    "description1": "Welcome to Pizza Haven, where passion meets flavor! We are more than just a pizza place – we are a family-owned restaurant dedicated to crafting the finest pizzas using the freshest ingredients and time-honored recipes.",
+    "description2": "It all started in 2010 with a simple dream: to bring authentic, mouthwatering pizzas to our community. Inspired by the rich traditions of Italian cuisine, we’ve spent years perfecting our craft, ensuring every bite is a celebration of flavor and quality.",
+    "description3": "At Pizza Haven, we believe that great pizza starts with great ingredients. That’s why we source only the finest, locally-sourced produce, premium meats, and artisanal cheeses. Every pizza is handcrafted with care, from our homemade dough to our signature sauces."
+  },
+
+  "contact": {
+    "title": "Don't Hesitate",
+    "subtitle": "Contact Us",
+    "phone": "+2012121212"
+  },
+  "footer": {
+    "copyright": "2025 Food Ordering App. All rights reserved."
+  },
+  "checkout": {
+    "title": "Checkout",
+    "phone": "Phone",
+    "enterPhone": "Enter your phone",
+    "streetAddress": "Street Address",
+    "enterAddress": "Enter your address",
+    "postalCode": "Postal Code",
+    "enterPostalCode": "Enter postal code",
+    "city": "City",
+    "enterCity": "Enter your city",
+    "country": "Country",
+    "enterCountry": "Enter your country",
+    "pay": "Pay $21.50"
+  }
+}
