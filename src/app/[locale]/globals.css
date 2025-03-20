@@ -69,13 +69,16 @@
   }
 
   .container {
-    @apply mx-auto px-4 md:px-8 lg:px-16 xl:px-32
+    @apply mx-auto px-4 md:px-8 lg:px-12 xl:px-28
   }
   .section-gap {
     @apply my-8 md:my-16;;
   }
   .flex-between {
     @apply flex justify-between items-center;
+  }
+  .flex-center {
+    @apply flex justify-center items-center;
   }
 }
 

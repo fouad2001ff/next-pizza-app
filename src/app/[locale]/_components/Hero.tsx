@@ -2,14 +2,13 @@
 import Image from "next/image";
 import React from "react";
 import { ArrowRightCircle } from "lucide-react";
-import { buttonVariants } from "@/components/ui/button";
+import { buttonVariants } from "@/app/[locale]/components/ui/button";
 import { Routes } from "@/constants/enums";
-import Link from "@/components/link";
+import Link from "@/app/[locale]/components/link";
 import { useTranslations } from "next-intl";
-import { usePathname } from "next/navigation";
+import useLocale from "@/lib/get-locale-in-client";
 const Hero = () => {
-  const pathname = usePathname();
-  const locale = pathname.split("/")[1];
+  const locale: string = useLocale();
   const t = useTranslations("hero");
 
   return (

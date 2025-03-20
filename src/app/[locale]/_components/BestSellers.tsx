@@ -1,5 +1,5 @@
-import MainHeading from "@/components/main-heading";
-import Menu from "@/components/menu";
+import MainHeading from "@/app/[locale]/components/main-heading";
+import Menu from "@/app/[locale]/components/menu";
 import { getBestSellers } from "@/server/db/product";
 import { getTranslations } from "next-intl/server";
 import React from "react";

@@ -1,16 +1,29 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+
+
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages, setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
 import { routing } from "@/i18n/routing";
-import { Roboto } from "next/font/google";
+import { Cairo, Roboto } from "next/font/google";
 import { Metadata } from "next";
 import ReduxProvider from "@/providers/ReduxProvider";
-import Header from "@/components/header";
-import Footer from "@/components/footer";
+import Header from "@/app/[locale]/components/header";
+import Footer from "@/app/[locale]/components/footer";
 import "./globals.css";
+import { Toaster } from "@/components/ui/sonner";
+import { Languages } from "@/constants/enums";
+import { getServerSession } from "next-auth";
+import { authOptions } from "@/server/auth";
+import SessionProviderWrapper from "@/providers/SessionProvider";
+
 
 const roboto = Roboto({
+  subsets: ["latin"],
+  weight: ["400", "500", "700"],
+  preload: true,
+});
+const cairo = Cairo({
   subsets: ["latin"],
   weight: ["400", "500", "700"],
   preload: true,
@@ -28,7 +41,7 @@ export default async function LocaleLayout({
   children: React.ReactNode;
   params: { locale: string };
 }) {
-  const {locale} = await params
+  const { locale } = await params;
 
   if (!routing.locales.includes(locale as any)) {
     notFound();
@@ -39,15 +52,20 @@ export default async function LocaleLayout({
 
   const direction = locale === "ar" ? "rtl" : "ltr"; // Change direction for Arabic
 
+  const session = await getServerSession(authOptions);
+
   return (
     <html lang={locale} dir={direction}>
-      <body className={roboto.className}>
+      <body className={ locale === Languages.ARABIC ? cairo.className : roboto.className}>
         <NextIntlClientProvider messages={messages}>
-          <ReduxProvider>
-            <Header />
-            {children}
-            <Footer />
-          </ReduxProvider>
+        <SessionProviderWrapper session={session}>
+            <ReduxProvider>
+              <Header />
+              {children}
+              <Toaster />
+              <Footer />
+            </ReduxProvider>
+          </SessionProviderWrapper>
         </NextIntlClientProvider>
       </body>
     </html>

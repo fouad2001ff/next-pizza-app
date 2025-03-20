@@ -1,5 +1,3 @@
-
-
 "use client";
 import React, { useState } from "react";
 import { Button } from "../ui/button";
@@ -11,7 +9,7 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@/components/ui/dialog";
+} from "@/app/[locale]/components/ui/dialog";
 import Image from "next/image";
 import { Label } from "../ui/label";
 import { formatCurrency } from "@/lib/formatters";

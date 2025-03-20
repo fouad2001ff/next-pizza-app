@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import React from "react";
 import { ShoppingCartIcon } from "lucide-react";
 import Link from "../link";
@@ -6,13 +6,11 @@ import { Routes } from "@/constants/enums";
 import { getCartQuantity } from "@/lib/cart";
 import { useAppSelector } from "@/redux/hooks";
 import { selectCartItems } from "@/redux/features/cart/cartSlice";
-import { usePathname } from "next/navigation";
-
+import useLocale from "@/lib/get-locale-in-client";
 function CartButton() {
-  const cart = useAppSelector(selectCartItems)
-  const cartQuantity = getCartQuantity(cart)
-   const pathname = usePathname();
-    const locale = pathname.split("/")[1];
+  const cart = useAppSelector(selectCartItems);
+  const cartQuantity = getCartQuantity(cart);
+  const locale: string = useLocale();
   return (
     <Link href={`/${locale}/${Routes.CART}`} className="relative group">
       <span className="absolute -right-2 -top-4 bg-primary text-white rounded-full size-5 flex items-center justify-center text-xs font-bold">

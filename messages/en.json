@@ -4,7 +4,11 @@
     "menu": "Menu",
     "about": "About",
     "contact": "Contact",
-    "login": "Login"
+    "login": "Login",
+    "signOut": "Sign Out",
+    "register": "Register",
+    "admin": "Admin",
+    "profile": "Profile"
   },
   "hero": {
     "title": "Slice into Happiness",
@@ -17,7 +21,6 @@
     "subtitle": "Our Best Sellers",
     "noProducts": "No Products Found"
   },
-
   "about": {
     "title": "Our Story",
     "subtitle": "About Us",
@@ -25,7 +28,6 @@
     "description2": "It all started in 2010 with a simple dream: to bring authentic, mouthwatering pizzas to our community. Inspired by the rich traditions of Italian cuisine, we’ve spent years perfecting our craft, ensuring every bite is a celebration of flavor and quality.",
     "description3": "At Pizza Haven, we believe that great pizza starts with great ingredients. That’s why we source only the finest, locally-sourced produce, premium meats, and artisanal cheeses. Every pizza is handcrafted with care, from our homemade dough to our signature sauces."
   },
-
   "contact": {
     "title": "Don't Hesitate",
     "subtitle": "Contact Us",
@@ -47,5 +49,163 @@
     "country": "Country",
     "enterCountry": "Enter your country",
     "pay": "Pay $21.50"
+  },
+  "signin": {
+    "welcome": "Welcome Back",
+    "email": "Email",
+    "emailPlaceholder": "Enter your email",
+    "password": "Password",
+    "passwordPlaceholder": "Enter your password",
+    "submit": "Submit",
+    "noAccount": "Don't have an account?",
+    "signUp": "Sign Up",
+    "loginSuccessful": "Login successful"
+  },
+  "signup": {
+    "welcome": "Welcome Back",
+    "createAccount": "Create an Account",
+    "name": "Name",
+    "namePlaceholder": "Enter your name",
+    "email": "Email",
+    "emailPlaceholder": "fouadgenina@gmail.com",
+    "password": "Password",
+    "passwordPlaceholder": "•••••••••••••••",
+    "confirmPassword": "Confirm Password",
+    "confirmPasswordPlaceholder": "Confirm your password",
+    "submit": "Submit",
+    "alreadyHaveAccount": "Already have an account?",
+    "signIn": "Sign In"
+  },
+  "validation": {
+    "nameRequired": "Name is required",
+    "validEmail": "Must be a valid email",
+    "passwordMinLength": "Password must be at least 6 characters",
+    "passwordMaxLength": "Password must be at most 40 characters",
+    "confirmPasswordRequired": "Confirm Password is required",
+    "passwordMismatch": "Password do not match",
+    "categoryRequired": "Categories Name Is Required"
+  },
+  "messages": {
+    "userNotFound": "User not found",
+    "incorrectPassword": "Incorrect password",
+    "unexpectedError": "An unexpected error occurred",
+    "userAlreadyExists": "User already exists.",
+    "accountCreated": "Account created successfully",
+    "updateProfileSucess": "Profile updated successfull",
+    "categoryAdded": "Category added successfully",
+    "updatecategorySucess": "Category updated successfull",
+    "deleteCategorySucess": "Category deleted successfull",
+    "productAdded": "Product added successfully",
+    "updateProductSucess": "Product updated successfull",
+    "deleteProductSucess": "Product deleted successfull",
+    "updateUserSucess": "User updated successfull",
+    "deleteUserSucess": "User deleted successfull"
+  },
+  "profile": {
+    "title": "Profile",
+    "form": {
+      "name": {
+        "label": "Name",
+        "placeholder": "Enter your name"
+      },
+      "email": {
+        "label": "Email",
+        "placeholder": "Enter your email"
+      },
+      "phone": {
+        "label": "Phone",
+        "placeholder": "Enter your phone number",
+        "validation": {
+          "required": "Phone number is required",
+          "invalid": "Please enter a valid phone number"
+        }
+      },
+      "address": {
+        "label": "Street Address",
+        "placeholder": "Enter your address",
+        "validation": {
+          "required": "Address is required"
+        }
+      },
+      "postalCode": {
+        "label": "Postal Code",
+        "placeholder": "Enter your postal code",
+        "validation": {
+          "required": "Postal code is required",
+          "invalid": "Please enter a valid postal code"
+        }
+      },
+      "city": {
+        "label": "City",
+        "placeholder": "Enter your city"
+      },
+      "country": {
+        "label": "Country",
+        "placeholder": "Enter your country"
+      },
+      "save": "Save"
+    }
+  },
+  "admin": {
+    "tabs": {
+      "profile": "Profile",
+      "categories": "Categories",
+      "menuItems": "Menu Items",
+      "users": "Users",
+      "orders": "Orders"
+    },
+  
+  "categories": {
+    "form": {
+      "editName": "Change Category Name",
+      "name": {
+        "label": "Category Name",
+        "placeholder": "Enter category name",
+        "validation": {
+          "required": "Category Name is required"
+        }
+      },
+      "create": "Create"
+    },
+    "validation": {
+      "required": "Category is required"
+    },
+    "noCategoriesFound": "No categories found"
+  },
+  "menu-items": {
+    "createNewMenuItem": "Create new menu item",
+    "addItemSize": "Add item size",
+    "addExtraItem": "Add extra item",
+    "menuOption": {
+      "name": "Name",
+      "extraPrice": "Extra Price"
+    
+  },
+  "form": {
+    "name": {
+      "label": "Item Name",
+      "placeholder": "Enter item name",
+      "validation": {
+        "required": "Item Name is required"
+      }
+    },
+    "description": {
+      "label": "Description Name",
+      "placeholder": "Enter description name",
+      "validation": {
+        "required": "description Name is required"
+      }
+    },
+    "basePrice": {
+      "label": "Base Price",
+      "placeholder": "Enter base price",
+      "validation": {
+        "required": "Base Price is required"
+      }
+    }
   }
+}
+  },
+  "create": "Create",
+  "save": "Save"
 }

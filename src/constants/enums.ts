@@ -15,11 +15,19 @@ export enum Directions {
     CONTACT = 'contact',
     AUTH = 'auth',
     CART = 'cart',
+    PROFILE = 'profile',
+    ADMIN = 'admin',
   }
   
   export enum Pages {
     LOGIN = 'signin',
     Register = 'signup',
+    CATEGORIES = 'categories',
+    USERS = 'user',
+    MENUITEMS = 'menu-items',
+    ORDERS = 'orders',
+    NEW = "new",
+    EDIT = "edit",
   }
   
   export enum InputTypes {
