@@ -1,5 +1,5 @@
 "use server";
-import { Routes } from "@/constants/enums";
+import { Pages, Routes } from "@/constants/enums";
 import { getCurrentLocale } from "@/lib/get-locale-in-server";
 import { db } from "@/lib/prisma";
 import { profileSchema } from "@/validations/profile";
@@ -28,12 +28,14 @@ export const updateProfile = async (prevState: unknown, formData: FormData) => {
   let imageFile: File | null = formData.get("image") as unknown as File | null;
   let imageUrl: string | undefined;
 
-  if (imageFile && !(imageFile instanceof File)) {
-    imageFile = new File([imageFile], "profile.jpg", { type: "image/jpeg" });
-  }
+  if (imageFile !== null) {
+    if (!(imageFile instanceof File)) {
+      imageFile = new File([imageFile], "profile.jpg", { type: "image/jpeg" });
+    }
 
-  if (imageFile && imageFile.size > 0) {
-    imageUrl = await getImageUrl(imageFile);
+    if (imageFile.size > 0) {
+      imageUrl = await getImageUrl(imageFile);
+    }
   }
   try {
     const user = await db.user.findUnique({
@@ -43,7 +45,7 @@ export const updateProfile = async (prevState: unknown, formData: FormData) => {
     if (!user) {
       return {
         status: 401,
-        message: "User not found",
+        message: t("messages.userNotFound"),
         formData,
       };
     }
@@ -57,10 +59,14 @@ export const updateProfile = async (prevState: unknown, formData: FormData) => {
       },
     });
     revalidatePath(`/${locale}/${Routes.PROFILE}`);
+    revalidatePath(`/${locale}/${Routes.ADMIN}/${Pages.USERS}`);
+    revalidatePath(
+      `/${locale}/${Routes.ADMIN}/${Pages.USERS}/${user.id}/${Pages.EDIT}`
+    );
 
     return {
       status: 200,
-      message: "Profile updated successfully",
+      message: t("messages.updateProfileSucess"),
     };
   } catch (error) {
     console.error("❌ Database error:", error);
@@ -73,6 +79,12 @@ export const updateProfile = async (prevState: unknown, formData: FormData) => {
 };
 
 const getImageUrl = async (imageFile: File) => {
+
+  console.log("Image file:", {
+    name: imageFile.name,
+    type: imageFile.type,
+    size: imageFile.size,
+  });
   const formData = new FormData();
   formData.append("file", imageFile);
   formData.append("pathName", "profile_images");

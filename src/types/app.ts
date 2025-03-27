@@ -25,7 +25,6 @@ export interface IOption {
     id?: string;
     defaultValue?: string;
     readOnly?: boolean;
-    checked?: boolean;
 
   }
   export interface IFormFieldsVariables {

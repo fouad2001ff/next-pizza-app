@@ -16,17 +16,18 @@ const PickSize = ({
   setSelectedSize: React.Dispatch<React.SetStateAction<Size>>;
 }) => {
   return (
-    <RadioGroup defaultValue="comfortable">
+    <RadioGroup defaultValue="small">
       {sizes.map((size) => (
         <div
           key={size.id}
-          className="flex items-center space-x-2 border border-gray-100 rounded-md p-4"
+          className={`flex items-center space-x-3 border rounded-md p-4 cursor-pointer 
+            transition-all ${selectedSize.id === size.id ? "border-primary bg-gray-50" : "border-gray-200"}`}
+            onClick={() => setSelectedSize(size)}
         >
           <RadioGroupItem
-            value={selectedSize.name}
-            checked={selectedSize.id === size.id}
-            onClick={() => setSelectedSize(size)}
             id={size.id}
+            value={selectedSize.id}
+            checked={selectedSize.id === size.id}
           />
           <Label htmlFor={size.id}>
             {size.name} {formatCurrency(size.price + item.basePrice)}

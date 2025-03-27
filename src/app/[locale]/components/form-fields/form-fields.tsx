@@ -5,9 +5,9 @@ import PasswordField from "./password-field";
 import Checkbox from "./checkbox";
 import { ValidationErrors } from "@/validations/auth";
 
-
 interface Props extends IFormField {
-error: ValidationErrors
+  error: ValidationErrors;
+  checked: boolean;
 }
 
 const FormFields = (props: Props) => {
@@ -22,7 +22,7 @@ const FormFields = (props: Props) => {
     }
 
     if (type === InputTypes.CHECKBOX) {
-      return <Checkbox {...props} />;
+      return <Checkbox {...props} label={props.label || ""} />;
     }
 
     return <TextField {...props} />;

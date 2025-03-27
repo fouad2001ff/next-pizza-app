@@ -136,14 +136,13 @@
         }
       },
       "city": {
-      "label": "المدينة",
-      "placeholder": "أدخل مدينتك"
-    },
-    "country": {
-      "label": "الدولة",
-      "placeholder": "أدخل دولتك"
-    
-    },
+        "label": "المدينة",
+        "placeholder": "أدخل مدينتك"
+      },
+      "country": {
+        "label": "الدولة",
+        "placeholder": "أدخل دولتك"
+      },
       "save": "حفظ"
     }
   },
@@ -154,59 +153,72 @@
       "menuItems": "عناصر القائمة",
       "users": "المستخدمون",
       "orders": "الطلبات"
-    
-  },
-  "categories": {
-    "form": {
-      "editName": "تعديل اسم الفئة",
-      "name": {
-        "label": "اسم الفئة",
-        "placeholder": "أدخل اسم الفئة",
-        "validation": {
-          "required": "اسم الفئة مطلوب"
-        }
+    },
+    "categories": {
+      "form": {
+        "editName": "تعديل اسم الفئة",
+        "name": {
+          "label": "اسم الفئة",
+          "placeholder": "أدخل اسم الفئة",
+          "validation": {
+            "required": "اسم الفئة مطلوب"
+          }
+        },
+        "create": "انشاء"
       },
-      "create": "انشاء"
-    },
-    "validation": {
-      "required": "اختيار الفئة مطلوب"
-    },
-    "noCategoriesFound": "لم يتم العثور على الفئات"
-  },
-  "menu-items": {
-  "createNewMenuItem": "إنشاء عنصر قائمة جديد",
-  "addItemSize": "إضافة حجم العنصر",
-  "addExtraItem": "إضافة عنصر إضافي",
-  "menuOption": {
-    "name": "الاسم",
-    "extraPrice": "السعر الاضافي"
-  },
-  "form": {
-    "name": {
-      "label": "اسم العنصر",
-      "placeholder": "أدخل اسم العنصر",
       "validation": {
-        "required": "اسم العنصر مطلوب"
-      }
+        "required": "اختيار الفئة مطلوب"
+      },
+      "noCategoriesFound": "لم يتم العثور على الفئات"
     },
-    "description": {
-      "label": "الوصف",
-      "placeholder": "أدخل الوصف",
-      "validation": {
-        "required": "الوصف مطلوب"
-      }
-    },
-    "basePrice": {
-      "label": "السعر الأساسي",
-      "placeholder": "أدخل السعر الأساسي",
-      "validation": {
-        "required": "السعر الأساسي مطلوب"
-      }
+    "menu-items": {
+      "createNewMenuItem": "إنشاء عنصر قائمة جديد",
+      "addItemSize": "إضافة حجم العنصر",
+      "addExtraItem": "إضافة عنصر إضافي",
+      "menuOption": {
+        "name": "الاسم",
+        "extraPrice": "السعر الاضافي"
+      },
+      "form": {
+        "name": {
+          "label": "اسم العنصر",
+          "placeholder": "أدخل اسم العنصر",
+          "validation": {
+            "required": "اسم العنصر مطلوب"
+          }
+        },
+        "description": {
+          "label": "الوصف",
+          "placeholder": "أدخل الوصف",
+          "validation": {
+            "required": "الوصف مطلوب"
+          }
+        },
+        "basePrice": {
+          "label": "السعر الأساسي",
+          "placeholder": "أدخل السعر الأساسي",
+          "validation": {
+            "required": "السعر الأساسي مطلوب"
+          }
+        },
+        "category": {
+          "validation": {
+            "required": "اختيار الفئة مطلوب"
+          }
+        },
+        "image": {
+          "validation": {
+            "required": "صورة المنتج مطلوبة"
+          }
+        }
       }
     }
-  }
-},
-"create": "انشاء",
-"save": "حفظ"
-
+  },
+  "create": "انشاء",
+  "delete": "حذف",
+  "cancel": "الغاء",
+  "save": "حفظ",
+  "sizes": "الأحجام",
+  "extrasIngredients": "عناصر اضافية",
+  "noProductsFound": "لم يتم العثور على منتجات"
 }

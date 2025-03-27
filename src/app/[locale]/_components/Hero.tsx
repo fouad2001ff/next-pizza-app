@@ -23,6 +23,7 @@ const Hero = () => {
               className={`${buttonVariants({
                 size: "lg",
               })} !px-4 !rounded-full`}
+              aria-label={t("orderNow")}
             >
               {t("orderNow")}
               <ArrowRightCircle className="!w-5 !h-5" />
@@ -32,6 +33,7 @@ const Hero = () => {
               className={`${buttonVariants({
                 size: "lg",
               })} !px-4 !rounded-full`}
+              aria-label={t("learnMore")}
             >
               {t("learnMore")}
               <ArrowRightCircle className="!w-5 !h-5" />
@@ -39,7 +41,7 @@ const Hero = () => {
           </div>
         </div>
 
-        <div className="relative  w-full h-[200px]  hidden md:block">
+        <div className="relative  w-full h-[200px]  sm:hidden md:block">
           <Image
             src="/assets/images/pizza.png"
             alt="Delicious pizza"

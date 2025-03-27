@@ -6,5 +6,5 @@ export const addCategorySchema = (t: (key: string) => string) =>
   });
 export const updateCategorySchema = (t: (key: string) => string) =>
   z.object({
-    categoryName: z.string().trim().min(1, t("categories.validation.required")),
+    categoryName: z.string().trim().min(1, t("admin.categories.validation.required")),
   });

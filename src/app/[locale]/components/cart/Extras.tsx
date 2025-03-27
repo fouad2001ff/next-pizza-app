@@ -24,12 +24,23 @@ const Extras = ({
   return (
     <div className="space-y-2">
       <div className="text-center">
-      <Label >Any extras?</Label>
+        <Label>Any extras?</Label>
       </div>
       {extras.map((extra) => (
         <div
           key={extra.id}
-          className="flex items-center space-x-2 border border-gray-100 rounded-md p-4"
+          onClick={() =>
+            handleExtraChange(
+              !selectedExtras.some((e) => e.id === extra.id),
+              extra
+            )
+          }
+          className={`flex items-center space-x-3 border rounded-md p-4 cursor-pointer transition-all 
+            ${
+              selectedExtras.some((e) => e.id === extra.id)
+                ? "border-primary bg-gray-50"
+                : "border-gray-200"
+            }`}
         >
           <Checkbox
             id={extra.id}

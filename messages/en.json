@@ -154,58 +154,72 @@
       "users": "Users",
       "orders": "Orders"
     },
-  
-  "categories": {
-    "form": {
-      "editName": "Change Category Name",
-      "name": {
-        "label": "Category Name",
-        "placeholder": "Enter category name",
-        "validation": {
-          "required": "Category Name is required"
-        }
+
+    "categories": {
+      "form": {
+        "editName": "Change Category Name",
+        "name": {
+          "label": "Category Name",
+          "placeholder": "Enter category name",
+          "validation": {
+            "required": "Category Name is required"
+          }
+        },
+        "create": "Create"
       },
-      "create": "Create"
-    },
-    "validation": {
-      "required": "Category is required"
-    },
-    "noCategoriesFound": "No categories found"
-  },
-  "menu-items": {
-    "createNewMenuItem": "Create new menu item",
-    "addItemSize": "Add item size",
-    "addExtraItem": "Add extra item",
-    "menuOption": {
-      "name": "Name",
-      "extraPrice": "Extra Price"
-    
-  },
-  "form": {
-    "name": {
-      "label": "Item Name",
-      "placeholder": "Enter item name",
       "validation": {
-        "required": "Item Name is required"
-      }
+        "required": "Category is required"
+      },
+      "noCategoriesFound": "No categories found"
     },
-    "description": {
-      "label": "Description Name",
-      "placeholder": "Enter description name",
-      "validation": {
-        "required": "description Name is required"
-      }
-    },
-    "basePrice": {
-      "label": "Base Price",
-      "placeholder": "Enter base price",
-      "validation": {
-        "required": "Base Price is required"
+    "menu-items": {
+      "createNewMenuItem": "Create new menu item",
+      "addItemSize": "Add item size",
+      "addExtraItem": "Add extra item",
+      "menuOption": {
+        "name": "Name",
+        "extraPrice": "Extra Price"
+      },
+      "form": {
+        "name": {
+          "label": "Item Name",
+          "placeholder": "Enter item name",
+          "validation": {
+            "required": "Item Name is required"
+          }
+        },
+        "description": {
+          "label": "Description Name",
+          "placeholder": "Enter description name",
+          "validation": {
+            "required": "description Name is required"
+          }
+        },
+        "basePrice": {
+          "label": "Base Price",
+          "placeholder": "Enter base price",
+          "validation": {
+            "required": "Base Price is required"
+          }
+        },
+        "category": {
+          "validation": {
+            "required": "Category is required"
+          }
+        },
+        "image": {
+          "validation": {
+            "required": "Product image is required"
+          }
+        }
       }
     }
-  }
-}
   },
   "create": "Create",
-  "save": "Save"
+  "delete": "Delete",
+  "cancel": "Cancel",
+  "save": "Save",
+  "sizes": "Sizes",
+  "extrasIngredients": "Extras Ingredients",
+  "noProductsFound": "No products found"
 }

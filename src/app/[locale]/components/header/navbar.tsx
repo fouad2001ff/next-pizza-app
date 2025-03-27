@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import { Menu, XIcon } from "lucide-react";
 import { Button } from "@/app/[locale]/components/ui/button";
 import { usePathname } from "next/navigation";
@@ -21,11 +21,14 @@ function Navbar() {
 
   const { data: session } = useSession();
 
-  const links = [
-    { id: crypto.randomUUID(), title: t("menu"), href: Routes.MENU },
-    { id: crypto.randomUUID(), title: t("about"), href: Routes.ABOUT },
-    { id: crypto.randomUUID(), title: t("contact"), href: Routes.CONTACT },
-  ];
+  const links = useMemo(
+    () => [
+      { id: "menu", title: t("menu"), href: Routes.MENU },
+      { id: "about", title: t("about"), href: Routes.ABOUT },
+      { id: "contact", title: t("contact"), href: Routes.CONTACT },
+    ],
+    [t]
+  );
 
   // Function to determine if a link is active
   const isActive = (href: string) => pathname === `/${locale}/${href}`;
@@ -79,7 +82,7 @@ function Navbar() {
           </li>
         ))}
 
-        {session && (
+        {session?.user && (
           <li>
             <Link
               href={

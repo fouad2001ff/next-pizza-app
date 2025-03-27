@@ -13,7 +13,6 @@ export const addCategory = async (prevState: unknown, formData: FormData) => {
   const t = await getTranslations("");
 
   const locale = await getCurrentLocale();
-  console.log(locale);
   const result = addCategorySchema(t).safeParse(
     Object.fromEntries(formData.entries())
   );
@@ -99,7 +98,6 @@ export const deleteCategory = async (id: string) => {
   const t = await getTranslations("");
 
   const locale = await getCurrentLocale();
-  
 
   try {
     await db.category.delete({

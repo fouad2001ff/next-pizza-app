@@ -68,8 +68,15 @@ const AddToCartButton = ({ item }: { item: ProductWithRelations }) => {
         </Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px] max-h-[80vh] overflow-y-auto">
-        <DialogHeader className="flex items-center">
-          <Image src={item.image} alt={item.name} width={200} height={200} />
+        <DialogHeader className="flex flex-col items-center text-center">
+          <Image
+            src={item.image}
+            alt={item.name}
+            width={200}
+            height={200}
+            className="rounded-lg"
+            priority
+          />
           <DialogTitle>{item.name}</DialogTitle>
           <DialogDescription>{item.description}</DialogDescription>
         </DialogHeader>

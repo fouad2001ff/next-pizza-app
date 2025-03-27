@@ -6,7 +6,7 @@ import CategoryItem from "./_components/CategoryItem";
 
 const CategoriesPage = async () => {
   const categories = await getCategories();
-  const t = await getTranslations("categories");
+  const t = await getTranslations("admin");
   return (
     <main>
       <section className="section-gap">
@@ -16,11 +16,11 @@ const CategoriesPage = async () => {
             {categories.length > 0 ? (
               <ul>
                 {categories.map((category) => (
-                 <CategoryItem key={category.id} category= {category} />
+                  <CategoryItem key={category.id} category={category} />
                 ))}
               </ul>
             ) : (
-              <p> {t("noCategoriesFound")} </p>
+              <p className="text-2xl font-semibold text-center"> {t("categories.noCategoriesFound")} </p>
             )}
           </div>
         </div>

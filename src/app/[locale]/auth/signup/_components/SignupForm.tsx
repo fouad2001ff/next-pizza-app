@@ -45,7 +45,8 @@ const SignupForm = () => {
   useEffect(() => {
     if (state.status && state.message) {
       toast(state.message, {
-        className: state.status === 201 ? "!text-green-400" : "!text-destructive",
+        className:
+          state.status === 201 ? "!text-green-400" : "!text-destructive",
       });
     }
     if (state.status === 201) {
@@ -63,6 +64,7 @@ const SignupForm = () => {
             {...field}
             error={state.error}
             defaultValue={fieldValue}
+            checked={false}
           />
         </div>
       ))}

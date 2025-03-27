@@ -12,15 +12,17 @@ const MenuItem = ({ item }: { item: ProductWithRelations }) => {
     >
       <div className="relative w-48 h-48 mx-auto">
         <Image
-          src={item.image}
+          src={item.image || "Product Image"}
           alt={item.name}
           className="object-cover"
+          loading="lazy"
           fill
+          priority={false}
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
         />
       </div>
       <div className="flex-between">
-        <h4 className="font-semibold text-xl my-3">{item.name}</h4>
+        <h4 className="font-semibold text-xl my-3 line-clamp-2">{item.name}</h4>
         <strong>{formatCurrency(item.basePrice)}</strong>
       </div>
       <p className="text-gray-500 text-center text-md line-clamp-3">

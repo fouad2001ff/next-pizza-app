@@ -15,8 +15,14 @@ import Loader from "../ui/Loader";
 import { useTranslations } from "next-intl";
 import { CameraIcon } from "lucide-react";
 import { toast } from "sonner";
+import { useSession } from "next-auth/react";
 
-const EditUserForm = ({ user }: { user: Session["user"] }) => {
+interface EditUserFormProps {
+  user: Session["user"];
+}
+
+const EditUserForm = ({ user }: EditUserFormProps) => {
+  const session = useSession();
   const { getFormFields } = useFormFields({ slug: Routes.PROFILE });
   const formData = new FormData();
   Object.entries(user).forEach(([key, value]) => {
@@ -43,19 +49,16 @@ const EditUserForm = ({ user }: { user: Session["user"] }) => {
 
   const [isAdmin, setisAdmin] = useState(user.role === UserRole.ADMIN);
 
-  const [state, action, pending] = useActionState(
-    updateProfile,
-    initialState
-  );
+  const [state, action, pending] = useActionState(updateProfile, initialState);
 
   useEffect(() => {
-    if (state.status && state.message && !pending) {
+    if (state.status && state.message) {
       toast(state.message, {
         className:
           state.status === 200 ? "!text-green-400" : "text-destructive",
       });
     }
-  }, [state.status, state.message, pending]);
+  }, [state.status, state.message]);
 
   useEffect(() => {
     setSelectedImage(user.image as string);
@@ -64,16 +67,17 @@ const EditUserForm = ({ user }: { user: Session["user"] }) => {
   return (
     <form action={action} className="flex flex-col  md:flex-row gap-6">
       <div className="group relative w-[200px] h-[200px] rounded-full overflow-hidden mx-auto ">
-        {selectedImage && (
-          <Image
-            src={selectedImage}
-            alt={user.name}
-            width={200}
-            height={200}
-            className="rounded-full object-cover"
-            priority
-          />
-        )}
+      {selectedImage && (
+  <Image
+    src={selectedImage}
+    alt={user.name}
+    width={200}
+    height={200}
+    style={{ width: '100%', height: 'auto' }} // Add this line
+    className="rounded-full object-cover"
+    priority
+  />
+)}
 
         <div
           className={`${
@@ -97,13 +101,18 @@ const EditUserForm = ({ user }: { user: Session["user"] }) => {
                   {...field}
                   defaultValue={fieldValue as string}
                   error={state?.error}
+                  checked={false}
                 />
               </div>
             );
           })}
         </div>
-        <input type="hidden" name="isAdmin" value={isAdmin ? "true" : "false"} />
-        {user.role === UserRole.ADMIN && (
+        <input
+          type="hidden"
+          name="isAdmin"
+          value={isAdmin ? "true" : "false"}
+        />
+        {session?.data?.user.role === UserRole.ADMIN && (
           <div className="flex items-center gap-2">
             <Checkbox
               name="admin"
@@ -124,11 +133,11 @@ const EditUserForm = ({ user }: { user: Session["user"] }) => {
 
 export default EditUserForm;
 
-const ImageUpload = ({
-  setSelectedImage,
-}: {
+interface ImageUploadProps {
   setSelectedImage: React.Dispatch<React.SetStateAction<string>>;
-}) => {
+}
+
+const ImageUpload = ({ setSelectedImage }: ImageUploadProps) => {
   const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files && event.target.files[0];
     if (file) {

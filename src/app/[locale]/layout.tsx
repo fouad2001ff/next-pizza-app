@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
-
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages, setRequestLocale } from "next-intl/server";
 import { notFound } from "next/navigation";
@@ -16,7 +15,6 @@ import { Languages } from "@/constants/enums";
 import { getServerSession } from "next-auth";
 import { authOptions } from "@/server/auth";
 import SessionProviderWrapper from "@/providers/SessionProvider";
-
 
 const roboto = Roboto({
   subsets: ["latin"],
@@ -50,15 +48,19 @@ export default async function LocaleLayout({
   const messages = await getMessages();
   setRequestLocale(locale);
 
-  const direction = locale === "ar" ? "rtl" : "ltr"; // Change direction for Arabic
+  const direction = locale === "ar" ? "rtl" : "ltr"; 
 
-  const session = await getServerSession(authOptions);
+  const session = await getServerSession(authOptions) ;
 
   return (
     <html lang={locale} dir={direction}>
-      <body className={ locale === Languages.ARABIC ? cairo.className : roboto.className}>
+      <body
+        className={
+          locale === Languages.ARABIC ? cairo.className : roboto.className
+        }
+      >
         <NextIntlClientProvider messages={messages}>
-        <SessionProviderWrapper session={session}>
+          <SessionProviderWrapper session={session}>
             <ReduxProvider>
               <Header />
               {children}

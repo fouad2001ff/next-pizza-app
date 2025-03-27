@@ -1,6 +1,6 @@
 // components/AuthButtons.tsx
 "use client";
-import React from "react";
+import React, { useCallback } from "react";
 import { Button, buttonVariants } from "@/app/[locale]/components/ui/button"; // Adjust path
 import { useSession, signOut } from "next-auth/react";
 import { usePathname, useRouter } from "next/navigation";
@@ -17,10 +17,10 @@ const AuthButtons = () => {
   const t = useTranslations("nav");
 
   // Handle sign out
-  const handleSignOut = async () => {
+  const handleSignOut = useCallback(async () => {
     await signOut({ redirect: false });
     router.replace(`/${locale}/${Routes.AUTH}/${Pages.LOGIN}`);
-  };
+  }, [locale, router]);
 
   if (session) {
     return (
@@ -30,6 +30,7 @@ const AuthButtons = () => {
           buttonVariants({ size: "lg" }),
           "px-8 rounded-full !text-white"
         )}
+        aria-label={t("signOut")}
       >
         {t("signOut")}
       </Button>
@@ -41,14 +42,15 @@ const AuthButtons = () => {
     <div className="flex gap-4">
       <Button
         onClick={() => router.push(`/${locale}/${Routes.AUTH}/${Pages.LOGIN}`)}
-        //
-        className={`${
+        className={cn(
+          "font-semibold hover:no-underline transition-colors duration-200",
           pathname.startsWith(`/${locale}/${Routes.AUTH}/${Pages.LOGIN}`)
             ? "text-primary"
             : "text-accent"
-        }  hover:no-underline  font-semibold  `}
+        )}
         size="lg"
         variant="link"
+        aria-label={t("login")}
       >
         {t("login")}
       </Button>
@@ -57,7 +59,8 @@ const AuthButtons = () => {
           router.push(`/${locale}/${Routes.AUTH}/${Pages.Register}`)
         }
         size="lg"
-        className="!px-8 !rounded-full"
+        className="px-8 rounded-full"
+        aria-label={t("register")}
       >
         {t("register")}
       </Button>

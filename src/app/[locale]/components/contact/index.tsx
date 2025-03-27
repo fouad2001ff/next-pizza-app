@@ -1,11 +1,9 @@
-"use client";
-
 import React from "react";
 import MainHeading from "../main-heading";
-import { useTranslations } from "next-intl";
+import { getTranslations } from "next-intl/server";
 
-function Contact() {
-  const t = useTranslations("contact"); // Reference the "contact" section in your translation files
+async function Contact() {
+  const t = await getTranslations("contact"); // Reference the "contact" section in your translation files
 
   return (
     <section className="section-gap">
@@ -13,7 +11,10 @@ function Contact() {
         <div className="text-center">
           <MainHeading title={t("title")} subtitle={t("subtitle")} />
           <div>
-            <a className="underline text-accent text-4xl" href="tel:+2012121212">
+            <a
+              className="underline text-accent text-3xl md:text-4xl"
+              href="tel:+2012121212"
+            >
               +2012121212
             </a>
           </div>

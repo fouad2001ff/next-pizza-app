@@ -9,9 +9,9 @@ export default async function ProfilePage(params: { locale: string }) {
   const { locale } = params;
   const t = await getTranslations("profile");
   const session = await getServerSession(authOptions);
-  if(!session) {
-      redirect(`/${locale}/${Routes.AUTH}/${Pages.LOGIN}`)
-    }
+  if (!session) {
+    return redirect(`/${locale}/${Routes.AUTH}/${Pages.LOGIN}`);
+  }
   return (
     <main>
       <section className="section-gap">
@@ -20,7 +20,7 @@ export default async function ProfilePage(params: { locale: string }) {
             {t("title")}
           </h1>
 
-          <EditUserForm user={session?.user} />
+          <EditUserForm user={session.user} />
         </div>
       </section>
     </main>

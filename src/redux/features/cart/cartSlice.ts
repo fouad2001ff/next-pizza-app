@@ -18,10 +18,16 @@ type CartState = {
 };
 
 
+const getInitialCartItems = (): CartItem[] => {
+  if (typeof window !== 'undefined') {
+    const savedItems = localStorage.getItem('cartItems');
+    return savedItems ? JSON.parse(savedItems) : [];
+  }
+  return [];
+};
+
 const initialState: CartState = {
-  items: typeof window !== "undefined"
-    ? JSON.parse(localStorage.getItem("cartItems") || "[]")
-    : [],
+  items: getInitialCartItems(),
 };
 
 export const cartSlice = createSlice({

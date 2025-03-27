@@ -23,15 +23,15 @@ const ChooseQuantity = ({
       <div className="flex items-center justify-center gap-2">
         <Button
           variant="outline"
-          className="text-black text-2xl"
+          className="text-black text-2xl w-10 h-10 flex items-center justify-center"
           onClick={() => dispatch(removeCartItem({ id: item.id }))}
         >
           -
         </Button>
-        <span>{quantity} in cart</span>
+        <span className="text-lg font-semibold">{quantity} in cart</span>
         <Button
           variant="outline"
-          className="text-black text-2xl"
+          className="text-black text-2xl w-10 h-10 flex items-center justify-center"
           onClick={() =>
             handleAddToCart()
           }
@@ -39,7 +39,7 @@ const ChooseQuantity = ({
           +
         </Button>
       </div>
-      <Button size= 'sm' onClick={() => dispatch(removeItemFromCart({ id: item.id }))}>
+      <Button size= 'sm' variant="destructive" onClick={() => dispatch(removeItemFromCart({ id: item.id }))}>
         Remove
       </Button>
     </div>

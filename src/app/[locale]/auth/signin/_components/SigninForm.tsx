@@ -69,7 +69,7 @@ const SigninForm = () => {
     <form onSubmit={onSubmit} ref={formRef}>
       {getFormFields().map((field: IFormField) => (
         <div key={field.name} className="mb-3">
-          <FormFields {...field} error={error} />
+          <FormFields {...field} error={error} checked={false} />
         </div>
       ))}
       <Button type="submit" disabled={isLoading} className="w-full">

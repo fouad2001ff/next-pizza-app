@@ -15,7 +15,8 @@ const t = useTranslations(formattedSlug);
       type: "email",
       placeholder: t("emailPlaceholder"), 
       autoFocus: true,
-    },
+    }, 
+     
     {
       label: t("password"),
       name: "password",

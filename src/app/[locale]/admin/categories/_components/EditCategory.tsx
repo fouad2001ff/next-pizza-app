@@ -20,10 +20,8 @@ import { updateCategory } from "../_actions/category";
 import Loader from "@/app/[locale]/components/ui/Loader";
 
 const EditCategory = ({ category }: { category: Category }) => {
- 
-  const t = useTranslations("categories");
+  const t = useTranslations("admin.categories");
 
-  
   const initialState: {
     message?: string;
     error?: ValidationErrors;
@@ -52,7 +50,7 @@ const EditCategory = ({ category }: { category: Category }) => {
           <EditIcon className="text-black" />
         </Button>
       </DialogTrigger>
-      <DialogContent  className="sm:max-w-[425px]">
+      <DialogContent className="sm:max-w-[425px]">
         <DialogHeader>
           <DialogTitle>{t("form.editName")}</DialogTitle>
         </DialogHeader>

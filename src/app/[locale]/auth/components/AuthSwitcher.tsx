@@ -19,6 +19,10 @@ const AuthSwitcher: React.FC<AuthSwitcherProps> = () => {
   const isSignIn = pathname.includes(Pages.LOGIN);
   const locale: string = useLocale();
   const t = useTranslations(isSignIn ? "signin" : "signup");
+  const formComponent = isSignIn ? <SigninForm /> : <SignupForm />;
+  const authRedirectPath = `/${locale}/${Routes.AUTH}/${
+    isSignIn ? Pages.Register : Pages.LOGIN
+  }`;
   return (
     <main>
       <div className="p-44 md:py-40 bg-gray-50">
@@ -27,14 +31,11 @@ const AuthSwitcher: React.FC<AuthSwitcherProps> = () => {
             <h1 className="text-2xl font-semibold text-center mb-4">
               {isSignIn ? t("welcome") : t("createAccount")}
             </h1>
-            {isSignIn ? <SigninForm /> : <SignupForm />}
-
+            {formComponent}
             <p className="flex-center mt-4 text-accent text-sm">
               {isSignIn ? t("noAccount") : t("createAccount")}
               <Link
-                href={`/${locale}/${Routes.AUTH}/${
-                  isSignIn ? Pages.Register : Pages.LOGIN
-                }`}
+                href={authRedirectPath}
                 className={`${buttonVariants({
                   variant: "link",
                   size: "sm",

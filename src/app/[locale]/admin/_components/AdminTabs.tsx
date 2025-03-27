@@ -12,47 +12,43 @@ const AdminTabs = () => {
   const locale = useLocale();
   const t = useTranslations("admin");
   const tabs = [
-    { id: crypto.randomUUID(), title: t("tabs.profile"), href: Routes.PROFILE },
+    {
+      id: crypto.randomUUID(),
+      title: t("tabs.profile"),
+      path: `/${locale}/${Routes.PROFILE}`,
+    },
     {
       id: crypto.randomUUID(),
       title: t("tabs.categories"),
-      href: `${Routes.ADMIN}/${Pages.CATEGORIES}`,
+      path: `/${locale}/${Routes.ADMIN}/${Pages.CATEGORIES}`,
     },
     {
       id: crypto.randomUUID(),
       title: t("tabs.menuItems"),
-      href: `${Routes.ADMIN}/${Pages.MENUITEMS}`,
+      href: `${Pages.MENUITEMS}`,
+      path: `/${locale}/${Routes.ADMIN}/${Pages.MENUITEMS}`,
     },
     {
       id: crypto.randomUUID(),
       title: t("tabs.users"),
-      href: `${Routes.ADMIN}/${Pages.USERS}`,
+      path: `/${locale}/${Routes.ADMIN}/${Pages.USERS}`,
     },
-    {
-      id: crypto.randomUUID(),
-      title: t("tabs.orders"),
-      href: `${Routes.ADMIN}/${Pages.ORDERS}`,
-    },
+    
   ];
 
-  const isActiveTab = (href: string) => {
-    const hrefArray = href.split("/");
-    return hrefArray.length > 1
-      ? pathname.startsWith(`/${locale}/${href}`)
-      : pathname === `/${locale}/${href}`;
-  };
+
   return (
     <nav className="mt-20">
       <ul className="flex-center gap-4 flex-wrap">
         {tabs.map((tab) => (
           <li key={tab.id}>
             <Link
-              href={tab.href}
+              href={tab.path}
               className={`!text-black hover:!text-white
-                  ${isActiveTab(tab.href) ? "!text-white" : ""}
-                ${buttonVariants({
-                  variant: isActiveTab(tab.href) ? "default" : "outline",
-                })}`}
+      ${pathname === tab.path ? "!text-white" : ""}
+    ${buttonVariants({
+      variant: pathname === tab.path ? "default" : "outline",
+    })}`}
             >
               {tab.title}
             </Link>

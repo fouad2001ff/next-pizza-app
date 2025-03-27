@@ -1,9 +1,14 @@
 "use server";
+import { Pages, Routes } from "@/constants/enums";
+import { getCurrentLocale } from "@/lib/get-locale-in-server";
+// import { Pages, Routes } from "@/constants/enums";
 import { db } from "@/lib/prisma";
 
 import { loginSchema, signUpSchema } from "@/validations/auth";
 import bcrypt from "bcrypt";
 import { getTranslations } from "next-intl/server";
+import { revalidatePath } from "next/cache";
+// import { revalidatePath } from "next/cache";
 
 export const login = async (
   credentials: Record<"email" | "password", string> | undefined
@@ -60,6 +65,8 @@ export const login = async (
 };
 
 export const signup = async (prevState: unknown, formData: FormData) => {
+  const locale = await getCurrentLocale();
+
   const t = await getTranslations("");
   const result = signUpSchema(t).safeParse(
     Object.fromEntries(formData.entries())
@@ -72,30 +79,28 @@ export const signup = async (prevState: unknown, formData: FormData) => {
     };
   }
   try {
-    const user = await db.user.findUnique({
-      where: {
-        email: result.data.email,
-      },
-    });
-    if (user) {
+    const { email, name, password } = result.data;
+    // Check if user already exists
+    const existingUser = await db.user.findUnique({ where: { email } });
+    if (existingUser) {
       return {
         status: 409, // Conflict
         message: "User already exists",
         formData,
       };
     }
-    const hashedPassword = await bcrypt.hash(result.data.password, 10);
+    const hashedPassword = await bcrypt.hash(password, 10);
     const createdUser = await db.user.create({
       data: {
-        name: result.data.name,
-        email: result.data.email,
+        name,
+        email,
         password: hashedPassword,
       },
     });
-    // revalidatePath(`/${locale}/${Routes.ADMIN}/${Pages.USERS}`);
-    // revalidatePath(
-    //   `/${locale}/${Routes.ADMIN}/${Pages.USERS}/${createdUser.id}/${Pages.EDIT}`
-    // );
+    revalidatePath(`/${locale}/${Routes.ADMIN}/${Pages.USERS}`);
+    revalidatePath(
+      `/${locale}/${Routes.ADMIN}/${Pages.USERS}/${createdUser.id}/${Pages.EDIT}`
+    );
     return {
       status: 201, // Created
       message: "User created successfully",
